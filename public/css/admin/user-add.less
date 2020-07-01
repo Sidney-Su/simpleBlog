@@ -1,0 +1,61 @@
+.form-container{
+    // width: 100%;
+    // height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 1px 1px 3px #ccc;
+}
+.form-group{
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    .inp{
+        box-sizing: border-box;
+        width: 100%;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    label{
+        font-size: 14px;
+        font-weight: 700;
+    }
+}
+.btn{
+    display: block;
+    width: 55px;
+    height: 30px;
+    background-color: #337ab7;
+    border: 1px solid #2e6da4;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    &:hover{
+        background-color: #286090;
+        border: 1px solid #204d74;
+    }
+}
+
+// 表单验证
+.error{
+    color: #df3033;
+}
+.success {
+    color: #40b83f;
+}
+.success_icon,
+.error_icon{
+    font-family: 'icomoon';
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 5px;
+    font-size: 12px;
+}

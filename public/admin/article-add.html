@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users in &laquo; Admin</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/admin/public.css">
+    <link rel="stylesheet" href="../css/admin/user-add.css">
+    <link rel="stylesheet" href="../css/admin/article-add.css">
+</head>
+
+<body>
+    <!-- 头部公共区 -->
+    <div class="header clearfix">
+        <div class="logo fl">
+            <a href="../index.html">
+                <img src="../images/logo.png" alt="简单博客">
+            </a>
+        </div>
+        <div class="profile fr" id="loginInfo">
+            <img src="../images/default.png" alt="">
+            <span>用户名</span>
+            <ul class="dropdown-menu" id="infoMenu">
+                <li><a href="#">个人资料</a></li>
+                <li><a href="#">修改密码</a></li>
+                <li><a href="#">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <!-- 侧边栏 -->
+        <div class="aside fl clearfix">
+            <ul class="menu">
+                <li class="active">
+                    <a href="user.html"><i></i><span>用户管理</span></a>
+                </li>
+                <li>
+                    <a href="article.html"><i></i><span>文章管理</span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- 主体内容 -->
+        <div class="content">
+            <div class="form-container">
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" class="inp" name="title" placeholder="请输入文章标题">
+                </div>
+                <div class="form-group">
+                    <label>作者</label>
+                    <input type="text" class="inp" name="author" readonly style="background-color: #eee;">
+                </div>
+                <div class="form-group">
+                    <label>发布时间</label>
+                    <input type="date" class="inp" name="publishDate" placeholder="请输入密码" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">文章封面</label>
+                    <input type="file" name="cover" id="exampleInputFile">
+                    <div class="thumbnail-waper">
+                        <img class="img-thumbnail" src="../upload/avatar_2.jpg" id="preview">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea id="content" class="inp" cols="30" rows="10" placeholder="内容" name="content"></textarea>
+                </div>
+                <input type="button" class="btn" value="添加">
+            </div>
+        </div>
+    </div>
+    <script src="../js/common/jquery.min.js"></script>
+    <script src="../js/admin/user.js"></script>
+</body>
+
+</html>

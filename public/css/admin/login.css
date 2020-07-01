@@ -1,0 +1,70 @@
+.logo {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}
+.login-wrap {
+  position: relative;
+  max-width: 380px;
+  margin: 150px auto;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 100px 40px 40px;
+  font-size: 14px;
+}
+.login-wrap .avatar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.form-group .inp {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  height: 34px;
+  padding: 6px 12px;
+}
+.form-group label {
+  font-size: 0;
+}
+.remember {
+  float: right;
+  margin-top: 5px;
+}
+#pwd {
+  float: right;
+  margin-left: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'icomoon';
+}
+.btn {
+  display: block;
+  width: 100%;
+  height: 30px;
+  background-color: #337ab7;
+  border: 1px solid #2e6da4;
+  font-weight: normal;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #286090;
+  border: 1px solid #204d74;
+}

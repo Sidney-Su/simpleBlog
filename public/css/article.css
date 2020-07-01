@@ -1,0 +1,46 @@
+.main {
+  margin-top: 10px;
+}
+.article {
+  box-sizing: border-box;
+  padding: 40px;
+  font-size: 14px;
+  background-color: #fff;
+}
+.article .author {
+  float: left;
+  color: #ff7300;
+  padding-right: 6px;
+  border-right: 1px solid #ccc;
+}
+.article .datetime {
+  padding-left: 6px;
+}
+.article .creator {
+  margin: 10px 0;
+}
+.article-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #555;
+  margin-right: 5px;
+}
+.extra {
+  display: inline-block;
+  color: #999999;
+  font-size: 14px;
+}
+.extra i {
+  font-family: 'icomoon';
+  font-style: normal;
+  margin: 0 3px;
+}
+.extra a {
+  color: #999999;
+}
+.extra a:hover {
+  color: red;
+}
+.brief {
+  margin: 20px 0;
+}

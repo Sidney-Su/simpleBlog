@@ -1,0 +1,71 @@
+.topnav {
+  background-color: #fff;
+  height: 60px;
+}
+.logo {
+  width: 175px;
+  height: 60px;
+}
+.logo a {
+  font-size: 0;
+}
+.logo img {
+  width: 100%;
+}
+.topnav li {
+  float: left;
+  width: 80px;
+  height: 60px;
+  margin: 0 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.topnav li:nth-child(1) {
+  line-height: 60px;
+}
+.topnav li:last-child a {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+.topnav li:last-child i {
+  display: block;
+  margin: 5px auto;
+  height: 30px;
+  width: 30px;
+}
+.topnav li:last-child img {
+  width: 100%;
+  height: 100%;
+}
+.topnav .current {
+  background-color: #ff7300;
+}
+.search {
+  position: relative;
+}
+#searchForm {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20%;
+  height: 34px;
+}
+#searchForm .keys {
+  float: left;
+  width: 70%;
+  height: 100%;
+  padding: 5px;
+  padding-left: 10px;
+  border: 2px solid #ccc;
+  border-right: 0;
+}
+#searchForm .btn {
+  float: left;
+  width: 30%;
+  height: 100%;
+  background-color: #ff5e52;
+  color: #fff;
+  cursor: pointer;
+}

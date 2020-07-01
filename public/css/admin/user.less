@@ -1,0 +1,91 @@
+
+// 主体内容
+.title{
+    position: relative;
+    width: 100%;
+    h4{
+        font-size: 24px;
+    }
+    span{
+        font-size: 14px;
+        color: #787e8f;
+    }
+    margin-bottom: 20px;
+}
+.adduser{
+    position: absolute;
+    z-index: 0;
+    top: 10px;
+    right: 0;
+    color: #fff;
+    background-color: #337ab7;
+    width: 82px;
+    height: 35px;
+    border-radius: 5px;
+    line-height: 35px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 0; //不知道为什么 提升z-index没用 减小z-index倒是有用
+}
+
+.table{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-spacing: 0;
+    border-collapse: collapse;
+    td{
+        border: 1px #ddd solid;
+        padding: 5px;
+        font-family: 'icomoon';
+    }
+    th{
+        border: 1px solid #ddd;
+        padding: 5px;
+        text-align: left;
+        font-size: 14px;
+        background-color: #fff;
+    }
+    tbody{
+        tr:nth-child(2n){
+            // background-color: #f9f9f9;
+            background-color: #fff;
+        }
+        tr:nth-child(2n+1){
+            background-color: #f9f9f9;
+        }
+    }
+    .modifyBtn{
+        color: blue;
+        margin-left: 5px;
+        font-size: 12px;
+        font-family: 'icomoon';
+        &:hover{
+            color: rgba(0, 0, 0, .8);
+        }
+    }
+    .delBtn{
+        font-style: normal;
+        font-family: 'icomoon';
+        font-size: 12px;
+        cursor: pointer;
+    }
+}
+.pagination {
+    li{
+        float: left;
+    }
+    a{
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: center;
+        color: #000;
+        border: 1px solid #ccc;
+    }
+    .current{
+        color: #ff7300;
+    }
+}

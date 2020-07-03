@@ -27,7 +27,7 @@ app.use(session({
 // 处理post参数
 app.use(formidable({
     // 文件上传目录
-    uploadDir: path.join(__dirname, 'public', 'uploads'),
+    uploadDir: path.join(__dirname, 'public', 'upload'),
     // 最大上传文件为2M
     maxFilesSize: 2 * 1024 * 1024,
     // 保留文件扩展名

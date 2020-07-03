@@ -18,7 +18,10 @@ app.use(session({
     //resave: 是指每次请求都重新设置 session cookie
     resave: false,
     //saveUninitialized: 是指无论有没有 session cookie ，每次请求都设置个 session cookie ，默认给的标示为 connect.sid。
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { // 有效期，单位是毫秒
+        maxAge: 1000 * 60 * 60 * 24
+    }
 }));
 
 // 处理post参数

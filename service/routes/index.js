@@ -5,7 +5,7 @@ module.exports = app => {
     // 文章路由集合 
     app.use('/articles', require('./article'));
     // 评论
-    // app.use('/comments',require());
+    app.use('/comments', require('./comment'));
 
     // 其他
     // 用户登录

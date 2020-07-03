@@ -44,7 +44,9 @@ const ArticleSchema = new mongoose.Schema({
         // 喜欢数量
         likes: { type: Number, default: 0 },
         // 收藏数量
-        collection: { type: Number, default: 0 }
+        // collection: { type: Number, default: 0 }
+        // 评论数量
+        comments: { type: Number, default: 0 }
     }
 }, { versionKey: false });
 // 应用集合规则

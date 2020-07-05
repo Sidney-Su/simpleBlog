@@ -1,6 +1,6 @@
 **web设计：简易博客**
 
-- jQuery node.js mongodb
+- jQuery node.js express mongodb
 - 支持用户和管理员登陆
 - 支持用户、文章增删改
 - 简单的搜索和评论功能

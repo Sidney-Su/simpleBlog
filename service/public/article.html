@@ -1,3 +1,4 @@
+<script src="/login/status"></script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>文章详情</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/public.css">
-    <link rel="stylesheet" href="css/article.css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/public.css">
+    <link rel="stylesheet" href="assets/css/article.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
         <div class="w">
             <div class="logo fl">
                 <h1><a href="index.html" title="简单博客">简单博客
-                    <img src="images/logo.png" alt="">
+                    <img src="assets/images/logo.png" alt="">
                 </a></h1>
             </div>
             <div class="search">
@@ -30,9 +31,9 @@
             <ul class="fr clearfix">
                 <li class="current"><a href="index.html">首页</a></li>
                 <li>
-                    <a href="admin/login.html">
-                        <i><img src="upload/user.png" alt=""></i>
-                        <p style="color: #000;">登录</p>
+                    <a href="admin/login.html" class="profile">
+                        <i><img src="upload/user.png" class="avatar"></i>
+                        <p style="color: #000;" class="name">登录</p>
                     </a>
                 </li>
             </ul>
@@ -41,52 +42,68 @@
     <!-- 主体内容 -->
     <div class="main w">
         <div class="article">
-            <div class="article-heade">
-                <a href="javascript:;" class="article-title">标题1</a>
-                <p class="creator"><span class="author">作者</span><span class="datetime">时间</span></p>
-                <div/>
-                <p class="extra">
-                    <i></i><span>浏览(0)</span>
-                    <i></i><span>收藏(0)</span>
-                    <a href="javascript:;">
-                        <i></i>
-                        <span>点赞(0)</span>
-                    </a>
-                </p>
-            </div>
-            <div class="article-content">
-                我是文章内容
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br> 1
+            <div id="articleBox"></div>
+            <div id="warning">
+                请登陆后进行讨论
             </div>
             <div class="article-comment">
-                <h4>评论</h4>
-                <form>
-                    <textarea class="comment" name="comment" id="" cols="30" rows="10"></textarea>
-                    <input class="items" type="submit" value="提交">
-                </form>
-                <div class="comment-list">
-                    <div class="mb10">
-                        <div class="article-info">
-                            <span class="author">Sideny</span>
-                            <span>2020-07-01</span>
-                            <span>Sideny@163.com</span>
-                        </div>
-                        <div class="comment-content">
-                            写的不错
-                        </div>
-                    </div>
+                <div id="hideComment">
+                    <h4>评论</h4>
+                    <form id="commentForm">
+                        <textarea class="comment" name="comment" id="" cols="30" rows="10"></textarea>
+                        <input class="items" type="submit" value="提交">
+                    </form>
+                </div>
+
+                <h4 id="commentsCount">全部评论(0)</h4>
+                <div class="comment-list" id="commentBox">
+
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="js/common/jquery.min.js"></script>
+    <script src="assets/js/common/jquery.min.js"></script>
+    <script src="assets/lib/art-template/template-web.js"></script>
+    <!-- 文章详情模板 -->
+    <script type="text/html" id="articleTpl">
+        <div class="article-heade">
+            <a href="javascript:;" class="article-title">{{title}}</a>
+            <p class="creator">
+                <span class="author">{{author.nickName}}</span>
+                <span class="datetime">{{$imports.formatDate(createAt)}} 发表</span>
+            </p>
+            <div/>
+            <p class="extra">
+                <i></i><span>浏览({{meta.views}})</span>
+                <i></i><span>收藏({{meta.collection}})</span>
+                <a href="javascript:;" id="likes">
+                    <i></i>
+                    <span>点赞({{meta.likes}})</span>
+                </a>
+            </p>
+        </div>
+        <div class="article-content">
+            {{content}}
+        </div>
+    </script>
+    <!-- 评论模块 -->
+    <script type="text/html" id="commentTpl">
+        {{each data}}
+        <div class="mb10">
+            <div class="article-info">
+                <span class="author">{{$value.author.nickName}}</span>
+                <span>{{$imports.formatDate($value.author.cretaeTime)}}  {{$value.author.cretaeTime.split('T')[1].substr(0,8)}}</span>
+                <span>{{$value.author.email}}</span>
+            </div>
+            <div class="comment-content">
+                {{$value.content}}
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <script src="assets/services/admin/common.js"></script>
+    <script src="assets/services/readArticle.js"></script>
 </body>
 
 </html>

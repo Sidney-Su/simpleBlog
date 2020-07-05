@@ -69,3 +69,7 @@
   color: #fff;
   cursor: pointer;
 }
+.profile .avatar {
+  border-radius: 50%;
+  overflow: hidden;
+}

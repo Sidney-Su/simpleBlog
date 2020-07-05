@@ -10,6 +10,6 @@ comment.get('/', require('./actions/comment/find'));
 // 获取评论数量
 comment.get('/count', require('./actions/comment/count'));
 // 获取最新评论
-comment.get('/lasted', require('./actions/comment/lasted'));
+comment.get('/lasted/:id', require('./actions/comment/lasted'));
 
 module.exports = comment;

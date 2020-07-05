@@ -1,3 +1,8 @@
+<script src="/login/status"></script>
+<script>
+    if (!isLogin) location.href = 'login.html';
+    if (admin == 'normal') location.href = '/index.html';
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users in &laquo; Admin</title>
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/normalize.css">
     <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/admin/public.css">
@@ -21,12 +26,12 @@
             </a>
         </div>
         <div class="profile fr" id="loginInfo">
-            <img src="../assets/images/default.png" alt="">
-            <span>用户名</span>
+            <img src="../assets/images/default.png" class="avatar">
+            <span class="name">用户名</span>
             <ul class="dropdown-menu" id="infoMenu">
-                <li><a href="#">个人资料</a></li>
-                <li><a href="#">修改密码</a></li>
-                <li><a href="#">退出登录</a></li>
+                <li><a href="javascript:;">个人资料</a></li>
+                <li><a href="/admin/modifyPwd.html">修改密码</a></li>
+                <li><a href="javascript:;" id="logout">退出登录</a></li>
             </ul>
         </div>
     </div>
@@ -42,12 +47,13 @@
                 </li>
             </ul>
         </div>
+
         <!-- 主体内容 -->
         <div class="content">
             <div class="title">
                 <h4>用户</h4>
-                <span>找到1个用户</span>
-                <a href="user-add.html" class="adduser fr clearfix">新增用户</a>
+                <span id="userCount">找到1个用户</span>
+                <a href="user-add.html" class="adduser fr clearfix" id="adduser">新增用户</a>
             </div>
             <table class="table">
                 <!-- 表格头部 -->
@@ -61,60 +67,49 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                            <a href="#" class="modifyBtn"></a>
-                            <i class="delBtn"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                    </tr>
-                </tbody>
+                <tbody id="userTbody"> </tbody>
             </table>
             <!-- 分页 -->
-            <ul class="pagination">
-                <li><a href="#">上一页</a></li>
-                <li>
-                    <a href="#" class="current">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li><a href="#">下一页</a></li>
-            </ul>
+            <ul class="pagination" id="page"> </ul>
         </div>
+
     </div>
     <script src="../assets/js/common/jquery.min.js"></script>
-    <script src="../assets/js/admin/user.js"></script>
+    <script src="../assets/services/admin/common.js"></script>
     <script src="../assets/services/admin/user.js"></script>
+    <script src="../assets/lib/art-template/template-web.js"></script>
+    <!-- 用户列表渲染 -->
+    <script type="text/html" id="userTpl">
+        {{each records}}
+        <tr>
+            <td>{{$value._id}}</td>
+            <td>{{$value.nickName}}</td>
+            <td>{{$value.email}}</td>
+            <td>{{$value.role == 'admin' ? '管理员':'普通用户'}}</td>
+            <td>{{$value.status == 0 ? '未激活':'激活'}}</td>
+            <td>
+                <a href="/admin/user-add.html?id={{$value._id}}" class="modifyBtn" data-id="{{$value._id}}"></a>
+                <i class="delBtn" data-id="{{$value._id}}"></i>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <!-- 分页 -->
+    <script type="text/html" id="userPage">
+        {{if page>1}}
+        <li><a href="javascript:;" onclick="changePage({{page-1}})">上一页</a></li>
+        {{/if}}
+        <!-- 如果只有一页 不显示页码 -->
+        {{if pages>1}} {{each display}}
+        <li>
+            <a href="javascript:;" onclick="changePage({{$value}})" class="{{$value==page? 'current':''}}">{{$value}}</a>
+        </li>
+        {{/each}} {{/if}}
+        <!-- 下一页 -->
+        {{if page
+        <pages}} <li><a href="javascript:;" onclick="changePage({{page+1}})">下一页</a></pages>
+            {{/if}}
+    </script>
 </body>
 
 </html>

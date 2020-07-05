@@ -1,3 +1,8 @@
+<script src="/login/status"></script>
+<script>
+    if (!isLogin) location.href = 'login.html';
+    if (admin == 'normal') location.href = '/index.html';
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users in &laquo; Admin</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/admin/public.css">
-    <link rel="stylesheet" href="../css/admin/user.css">
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin/public.css">
+    <link rel="stylesheet" href="../assets/css/admin/user.css">
 </head>
 
 <body>
@@ -17,16 +22,17 @@
     <div class="header clearfix">
         <div class="logo fl">
             <a href="../index.html">
-                <img src="../images/logo.png" alt="简单博客">
+                <img src="../assets/images/logo.png" alt="简单博客">
             </a>
         </div>
+
         <div class="profile fr" id="loginInfo">
-            <img src="../images/default.png" alt="">
-            <span>用户名</span>
+            <img src="../assets/images/default.png" class="avatar">
+            <span class="name">用户名</span>
             <ul class="dropdown-menu" id="infoMenu">
-                <li><a href="#">个人资料</a></li>
-                <li><a href="#">修改密码</a></li>
-                <li><a href="#">退出登录</a></li>
+                <li><a href="javascript:;">个人资料</a></li>
+                <li><a href="/admin/modifyPwd.html">修改密码</a></li>
+                <li><a href="javascript:;" id="logout">退出登录</a></li>
             </ul>
         </div>
     </div>
@@ -34,10 +40,10 @@
         <!-- 侧边栏 -->
         <div class="aside fl clearfix">
             <ul class="menu">
-                <li class="active">
+                <li>
                     <a href="user.html"><i></i><span>用户管理</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="article.html"><i></i><span>文章管理</span></a>
                 </li>
             </ul>
@@ -46,7 +52,7 @@
         <div class="content">
             <div class="title">
                 <h4>文章</h4>
-                <span>找到1个文章</span>
+                <span id="articleCount">找到1个文章</span>
                 <a href="article-add.html" class="adduser fr clearfix">写文章</a>
             </div>
             <table class="table">
@@ -60,55 +66,47 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>
-                            <a href="#" class="modifyBtn"></a>
-                            <i class="delBtn"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>2</td>
-                    </tr>
-                </tbody>
+                <tbody id="articleTbody"> </tbody>
             </table>
             <!-- 分页 -->
-            <ul class="pagination">
-                <li><a href="#">上一页</a></li>
-                <li>
-                    <a href="#" class="current">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li><a href="#">下一页</a></li>
-            </ul>
+            <ul class="pagination" id="articlePage"> </ul>
         </div>
     </div>
-    <script src="../js/common/jquery.min.js"></script>
-    <script src="../js/admin/user.js"></script>
+    <script src="../assets/js/common/jquery.min.js"></script>
+    <script src="../assets/services/admin/common.js"></script>
+    <script src="../assets/lib/art-template/template-web.js"></script>
+    <!-- 文章渲染模板 -->
+    <script type="text/html" id="articleTpl">
+        {{each records}}
+        <tr>
+            <td>{{$value._id}}</td>
+            <td>{{$value.title}}</td>
+            <td>{{$imports.formatDate($value.createAt)}}</td>
+            <td>{{$value.author.nickName}}</td>
+            <td>
+                <a href="/admin/article-add.html?id={{$value._id}}" class="modifyBtn"></a>
+                <i class="delBtn" data-id="{{$value._id}}"></i>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <!-- 分页渲染 -->
+    <script type="text/html" id="articlePageTpl">
+        {{if page>1}}
+        <li><a href="javascript:;" onclick="changePage({{page-1}})">上一页</a></li>
+        {{/if}}
+        <!-- 分页 只有1页时不显示 -->
+        {{if pages>1}} {{each display}}
+        <li>
+            <a href="javascript:;" onclick="changePage({{page}})" class="{{page==$value ? 'current':''}}">{{$value}}</a>
+        </li>
+        {{/each}} {{/if}}
+        <!-- 下一页 -->
+        {{if page
+        < pages}} <li><a href="javascript:;" onclick="changePage({{page+1}})">下一页</a></li>
+            {{/if}}
+    </script>
+    <script src="../assets/services/admin/article.js"></script>
 </body>
 
 </html>

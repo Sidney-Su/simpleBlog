@@ -1,7 +1,7 @@
 // 表单验证
 var requser = /^[\u4e00-\u9fa5]{2,8}|[\w]{2,10}$/;
 var reqemail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-var reqpwd = /^[\w]{6,16}$/;
+var reqpwd = /^[\w]{3,16}$/;
 
 // 匹配规则
 regexp(requser, $('#username'));
@@ -20,6 +20,7 @@ function regexp(reg, ele) {
             // console.log('错误');
             spans.removeClass().addClass('error error_icon');
             spans.html('<i style="font-style: normal;"></i> 格式不正确');
+            return;
         }
     });
 }

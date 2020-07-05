@@ -90,3 +90,15 @@
   line-height: 22px;
   margin-top: 5px;
 }
+#commentsCount {
+  font-size: 14px;
+  color: #000;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+#warning {
+  font-size: 20px;
+  height: 60px;
+  line-height: 60px;
+  background-color: pink;
+}

@@ -5,19 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 网页简述 -->
-    <meta name="description" content="简简单单，更能发觉生活美好！">
-    <!-- 网页标题 -->
-    <title>简单博客-只为简单而生!</title>
-    <!-- 网页关键字 -->
-    <meta name="keywords" content="blog,jiandan,博客,简单博客">
-    <!-- 引入网页图标 -->
+    <title>搜索...</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!-- 引入初始化的css文件 -->
     <link rel="stylesheet" href="assets/css/normalize.css">
-    <!-- 引入公共样式的css文件 -->
     <link rel="stylesheet" href="assets/css/common.css">
-    <!-- 引入首页样式文件 -->
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/public.css">
 </head>
@@ -33,12 +24,12 @@
             </div>
             <div class="search">
                 <form id="searchForm">
-                    <input type="search" class="keys" placeholder="输入关键字" value="">
+                    <input type="search" class="keys" name="" placeholder="输入关键字">
                     <input type="submit" class="btn" value="搜索">
                 </form>
             </div>
             <ul class="fr clearfix">
-                <li class="current"><a href="index.html">首页</a></li>
+                <li class="current"><a href="/index.html">首页</a></li>
                 <li>
                     <a href="admin/login.html" class="profile">
                         <i><img src="upload/user.png" class="avatar"></i>
@@ -50,30 +41,6 @@
     </div>
     <!-- 主体内容 -->
     <div class="main w">
-        <div class="focus" id="focus">
-            <a href="javascript:;" class="arrow-l"></a>
-            <a href="javascript:;" class="arrow-r"></a>
-            <ul>
-                <li>
-                    <a href="article.html"><img src="upload/avatar_1.jpg" alt=""><span>标题</span></a>
-                </li>
-                <li>
-                    <a href="article.html"><img src="upload/avatar_2.jpg" alt=""><span>标题</span></a>
-                </li>
-                <li>
-                    <a href="article.html"><img src="upload/avatar_3.jpg" alt=""><span>标题</span></a>
-                </li>
-                <li>
-                    <a href="article.html"><img src="upload/avatar_4.jpg" alt=""><span>标题</span></a>
-                </li>
-            </ul>
-            <ol class="circle">
-                <!-- <li class="current"></li>
-                <li></li>
-                <li></li>
-                <li></li> -->
-            </ol>
-        </div>
         <ul class="list clearfix" id="lastedBox"> </ul>
         <div class="slider-bar">
             <i class="goback"></i>
@@ -87,12 +54,9 @@
     </div>
 
     <script src="assets/js/common/jquery.min.js"></script>
-    <script src="assets/js/common/flexible.js"></script>
-    <script src="assets/js/common/animate.js"></script>
-    <script src="assets/js/index.js"></script>
     <script src="assets/lib/art-template/template-web.js"></script>
     <!-- 文章渲染模板 -->
-    <script type="text/html" id="lastedTpl">
+    <script type="text/html" id="searchTpl">
         {{each data}}
         <li class="{{$index%2==0 ? 'fl':'fr'}}">
             <a href="article.html?articleId={{$value._id}}">
@@ -120,8 +84,9 @@
         </li>
         {{/each}}
     </script>
+    <!-- <script src="assets/js/index.js"></script> -->
     <script src="assets/services/admin/common.js"></script>
-    <script src="assets/services/index.js"></script>
+    <script src="assets/services/search.js"></script>
     <script src="assets/services/public.js"></script>
 </body>
 

@@ -1,3 +1,9 @@
+<script src="/login/status"></script>
+<script>
+    // 返回值：isLogin userId admin
+    if (!isLogin) location.href = 'login.html';
+    if (admin == 'normal') location.href = '/index.html';
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,27 +12,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users in &laquo; Admin</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/admin/public.css">
-    <link rel="stylesheet" href="../css/admin/user-add.css">
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin/public.css">
+    <link rel="stylesheet" href="../assets/css/admin/user-add.css">
 </head>
 
 <body>
     <!-- 头部公共区 -->
     <div class="header clearfix">
         <div class="logo fl">
-            <a href="../index.html">
-                <img src="../images/logo.png" alt="简单博客">
+            <a href="/index.html">
+                <img src="../assets/images/logo.png" alt="简单博客">
             </a>
         </div>
         <div class="profile fr" id="loginInfo">
-            <img src="../images/default.png" alt="">
-            <span>用户名</span>
+            <img src="../assets/images/default.png" class="avatar">
+            <span class="name">用户名</span>
             <ul class="dropdown-menu" id="infoMenu">
-                <li><a href="#">个人资料</a></li>
-                <li><a href="#">修改密码</a></li>
-                <li><a href="#">退出登录</a></li>
+                <li><a href="javascript:;">个人资料</a></li>
+                <li><a href="modifyPwd.html">修改密码</a></li>
+                <li><a href="javascript:;" id="logout">退出登录</a></li>
             </ul>
         </div>
     </div>
@@ -44,7 +50,7 @@
         </div>
         <!-- 主体内容 -->
         <div class="content">
-            <div class="form-container">
+            <form class="form-container" id="modifyPwdForm">
                 <div class="form-group">
                     <label>旧密码</label>
                     <input type="password" class="inp" name="userPass" placeholder="请输入旧密码">
@@ -60,12 +66,13 @@
                     <input type="password" class="inp" name="confirmPass" placeholder="请确认密码">
                     <span></span>
                 </div>
-                <input type="button" class="btn" value="修改">
-            </div>
+                <input type="submit" class="btn" value="修改">
+            </form>
         </div>
     </div>
-    <script src="../js/common/jquery.min.js"></script>
-    <script src="../js/admin/user.js"></script>
+    <script src="../assets/js/common/jquery.min.js"></script>
+    <script src="../assets/services/admin/common.js"></script>
+    <script src="../assets/services/admin/modifyPwd.js"></script>
 </body>
 
 </html>

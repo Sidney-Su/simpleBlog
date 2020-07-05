@@ -1,3 +1,8 @@
+<script src="/login/status"></script>
+<script>
+    if (!isLogin) location.href = 'login.html';
+    if (admin == 'normal') location.href = '/index.html';
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users in &laquo; Admin</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/admin/public.css">
-    <link rel="stylesheet" href="../css/admin/user-add.css">
-    <link rel="stylesheet" href="../css/admin/article-add.css">
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin/public.css">
+    <link rel="stylesheet" href="../assets/css/admin/user-add.css">
+    <link rel="stylesheet" href="../assets/css/admin/article-add.css">
 </head>
 
 <body>
@@ -18,16 +23,16 @@
     <div class="header clearfix">
         <div class="logo fl">
             <a href="../index.html">
-                <img src="../images/logo.png" alt="简单博客">
+                <img src="../assets/images/logo.png" alt="简单博客">
             </a>
         </div>
         <div class="profile fr" id="loginInfo">
-            <img src="../images/default.png" alt="">
-            <span>用户名</span>
+            <img src="../assets/images/default.png" class="avatar">
+            <span class="name">用户名</span>
             <ul class="dropdown-menu" id="infoMenu">
-                <li><a href="#">个人资料</a></li>
-                <li><a href="#">修改密码</a></li>
-                <li><a href="#">退出登录</a></li>
+                <li><a href="javascript:;">个人资料</a></li>
+                <li><a href="/admin/modifyPwd.html">修改密码</a></li>
+                <li><a href="javascript:;" id="logout">退出登录</a></li>
             </ul>
         </div>
     </div>
@@ -35,46 +40,75 @@
         <!-- 侧边栏 -->
         <div class="aside fl clearfix">
             <ul class="menu">
-                <li class="active">
+                <li>
                     <a href="user.html"><i></i><span>用户管理</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="article.html"><i></i><span>文章管理</span></a>
                 </li>
             </ul>
         </div>
         <!-- 主体内容 -->
-        <div class="content">
-            <div class="form-container">
+        <div class="content" id="articleBox">
+            <form class="form-container" id="articleForm">
                 <div class="form-group">
                     <label>标题</label>
                     <input type="text" class="inp" name="title" placeholder="请输入文章标题">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>作者</label>
                     <input type="text" class="inp" name="author" readonly style="background-color: #eee;">
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>发布时间</label>
-                    <input type="date" class="inp" name="publishDate" placeholder="请输入密码" id="password">
+                    <input type="date" class="inp" name="publishDate">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">文章封面</label>
-                    <input type="file" name="cover" id="exampleInputFile">
+                    <input type="file" name="avatar" id="thumbnail">
                     <div class="thumbnail-waper">
                         <img class="img-thumbnail" src="" id="preview">
                     </div>
+                    <input type="hidden" name="thumbnail" id="hiddenThumbnail" value="">
                 </div>
                 <div class="form-group">
                     <label>内容</label>
                     <textarea id="content" class="inp" cols="30" rows="10" placeholder="内容" name="content"></textarea>
                 </div>
-                <input type="button" class="btn" value="添加">
-            </div>
+                <input type="submit" class="btn" value="添加">
+            </form>
         </div>
     </div>
-    <script src="../js/common/jquery.min.js"></script>
-    <script src="../js/admin/user.js"></script>
+    <script src="../assets/js/common/jquery.min.js"></script>
+    <script src="../assets/services/admin/common.js"></script>
+    <script src="../assets/lib/art-template/template-web.js"></script>
+    <!-- 文章修改渲染 -->
+    <script type="text/html" id="modifyArticleTpl">
+        <form class="form-container" id="articleModifyForm" data-id="{{_id}}">
+            <div class="form-group">
+                <label>标题</label>
+                <input type="text" class="inp" name="title" placeholder="请输入文章标题" value="{{title}}">
+            </div>
+            <div class="form-group">
+                <label>发布时间</label> {{if createAt}}
+                <input type="date" class="inp" name="publishDate" value="{{createAt.split('T')[0]}}"> {{/if}}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">文章封面</label>
+                <input type="file" name="avatar" id="thumbnail">
+                <div class="thumbnail-waper">
+                    <img class="img-thumbnail" src="{{thumbnail}}" id="preview">
+                </div>
+                <input type="hidden" name="thumbnail" id="hiddenThumbnail" value="{{thumbnail}}">
+            </div>
+            <div class="form-group">
+                <label>内容</label>
+                <textarea id="content" class="inp" cols="30" rows="10" placeholder="内容" name="content">{{content}}</textarea>
+            </div>
+            <input type="submit" class="btn" value="修改">
+        </form>
+    </script>
+    <script src="../assets/services/admin/article-add.js"></script>
 </body>
 
 </html>

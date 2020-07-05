@@ -9,6 +9,8 @@ article.delete('/:id', require('./actions/article/findByIdAndDelete'));
 article.get('/', require('./actions/article/find'));
 // 查询文章数量
 article.get('/count', require('./actions/article/count'));
+// 获取最新发布文章(发布时间排序)
+article.get('/lasted', require('./actions/article/lasted'));
 // 文章点赞
 article.post('/fabulous/:id', require('./actions/article/fabulous'));
 // 文章搜索

@@ -1,3 +1,8 @@
+<script src="/login/status"></script>
+<script>
+    if (!isLogin) location.href = 'login.html';
+    if (admin == 'normal') location.href = '/index.html';
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users in &laquo; Admin</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/admin/public.css">
-    <link rel="stylesheet" href="../css/admin/user-add.css">
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin/public.css">
+    <link rel="stylesheet" href="../assets/css/admin/user-add.css">
 </head>
 
 <body>
@@ -17,11 +22,11 @@
     <div class="header clearfix">
         <div class="logo fl">
             <a href="../index.html">
-                <img src="../images/logo.png" alt="简单博客">
+                <img src="../assets/images/logo.png" alt="简单博客">
             </a>
         </div>
         <div class="profile fr" id="loginInfo">
-            <img src="../images/default.png" alt="">
+            <img src="../assets/images/default.png" alt="">
             <span>用户名</span>
             <ul class="dropdown-menu" id="infoMenu">
                 <li><a href="#">个人资料</a></li>
@@ -43,18 +48,20 @@
             </ul>
         </div>
         <!-- 主体内容 -->
-        <div class="content">
-            <div class="form-container">
+        <div class="content" id="userBox">
+            <form class="form-container" id="userForm">
                 <div class="form-group">
                     <label for="exampleInputFile">上传头像</label>
-                    <input type="file" name="cover" id="exampleInputFile">
+                    <input type="file" id="avatar">
                     <div class="thumbnail-waper">
                         <img class="img-thumbnail" src="" id="preview">
                     </div>
+                    <!-- 隐藏域 -->
+                    <input type="hidden" name="avatar" id="hiddenAvatar" value="">
                 </div>
                 <div class="form-group">
                     <label>用户名</label>
-                    <input type="text" class="inp" name="username" placeholder="请输入用户名" id="username">
+                    <input type="text" class="inp" name="nickName" placeholder="请输入用户名" id="username">
                     <!-- <span class="error error_icon"><i></i>啊手机打开哈桑大家</span> -->
                     <span></span>
                 </div>
@@ -70,25 +77,67 @@
                 </div>
                 <div class="form-group">
                     <label>角色</label>
-                    <select name="role" class="inp" id="">
+                    <select name="role" class="inp">
                         <option value="normal">普通用户</option>
                         <option value="admin">超级管理员</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>状态</label>
-                    <select name="state" class="inp" id="">
-                        <option value="0">启用</option>
-                        <option value="1">禁用</option>
+                    <select name="status" class="inp">
+                        <option value="1">启用</option>
+                        <option value="0">禁用</option>
                     </select>
                 </div>
-                <input type="button" class="btn" value="添加">
-            </div>
+                <input type="submit" class="btn" value="添加">
+            </form>
         </div>
     </div>
-    <script src="../js/common/jquery.min.js"></script>
-    <script src="../js/admin/user.js"></script>
-    <script src="../js/admin/user-add.js"></script>
+    <script src="../assets/js/common/jquery.min.js"></script>
+    <script src="../assets/services/admin/common.js"></script>
+    <script src="../assets/js/admin/user-add.js"></script>
+    <script src="../assets/lib/art-template/template-web.js"></script>
+    <!-- 用户修改模板 -->
+    <script type="text/html" id="modifyTpl">
+        <form class="form-container" id="modifyForm" data-id="{{_id}}">
+            <div class="form-group">
+                <label for="exampleInputFile">上传头像</label>
+                <input type="file" id="avatar" name="avatar">
+                <div class="thumbnail-waper">
+                    <!-- 如果用户上传了头像 显示头像 否则不显示 -->
+                    {{if avatar}}
+                    <img class="img-thumbnail" src="{{avatar}}" id="preview"> {{else}}
+                    <img class="img-thumbnail" src="" id="preview"> {{/if}}
+                </div>
+                <!-- 隐藏域 -->
+                <input type="hidden" name="avatar" id="hiddenAvatar" value="{{avatar}}">
+            </div>
+            <div class="form-group">
+                <label>用户名</label>
+                <input type="text" class="inp" name="nickName" placeholder="请输入用户名" id="username" value="{{nickName}}">
+            </div>
+            <div class="form-group">
+                <label>邮箱</label>
+                <input type="email" class="inp" name="email" placeholder="请输入邮箱地址" id="email" value="{{email}}">
+            </div>
+            <div class="form-group">
+                <label>角色</label>
+                <select name="role" class="inp">
+                    <option value="normal" {{role == 'normal' ? 'selected':''}}>普通用户</option>
+                    <option value="admin" {{role == 'admin' ? 'selected':''}}>超级管理员</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>状态</label>
+                <select name="status" class="inp">
+                    <option value="1" {{status == 1 ? 'selected':''}}>启用</option>
+                    <option value="0" {{status == 0 ? 'selected':''}}>禁用</option>
+                </select>
+            </div>
+            <input type="submit" class="btn" value="修改">
+        </form>
+    </script>
+    <script src="../assets/services/admin/user-add.js"></script>
 </body>
 
 </html>
